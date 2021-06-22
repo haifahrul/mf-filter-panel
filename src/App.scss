@@ -1,0 +1,67 @@
+// Import Fuse core library
+@import '@fuse/scss/core';
+
+// Import Sinbad core library
+// @import '@sinbad/scss/core';
+
+// Import Sinbad helper
+// @import '@sinbad/scss/helper';
+
+// Import app.theme.scss
+// @import 'app.theme';
+
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600,700');
+
+.react-payment-status-container {
+    .button-container {
+        text-align: end;
+        margin-bottom: 10px;
+        padding-right: 15px;
+        button{
+            margin-right: 5px   ;
+        }
+    }
+
+    .payment-status-pagination {
+        display: flex;
+        flex-direction: row-reverse;
+        .table-pagination{
+            display: inline-block;
+            text-align: center;
+        }
+    }
+
+    .MuiButtonBase-root.MuiTab-root{
+        text-transform: initial!important;
+    }
+
+    .MuiTableCell-root.MuiTableCell-body{
+        .duedate-green{color: green}
+        .duedate-red{color:red}
+    }
+
+    .search-container {
+        padding: 16px;
+        display: flex;
+        text-align: center;
+        .title {
+            flex: 1;
+            width: 135px;
+            height: 23px;
+            margin-top: 11.5px;
+            font-family: Muli, serif;
+            font-size: 18px;
+            font-weight: 600;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.28;
+            letter-spacing: normal;
+            text-align: left;
+            color: #25282b;
+        }
+
+        .search {
+            flex: 2;
+        }
+    }
+}
