@@ -9,17 +9,28 @@ function App() {
   const formFilter: IFilterPanelFormMeta[] = [
     {
       title: "Order Date",
-      type: "dateMinMax",
+      type: "dateRange",
       field: "orderDate",
+      value: {
+        start: '2021-06-20',
+        end: '2021-06-22'
+      },
+      options: {
+        dateRange: {
+          variant: 'inline',
+          minDate: '2021-06-20',
+          maxDate: '2021-06-28'
+        }
+      }
     },
     {
       title: "Payment Due Date",
-      type: "dateMinMax",
+      type: "dateRange",
       field: "paymentDueDate",
     },
     {
       title: "Payment Date",
-      type: "dateMinMax",
+      type: "dateRange",
       field: "paymentDate",
     },
     {
@@ -28,7 +39,7 @@ function App() {
       field: "storeOrderTotal",
       value: {
         min: 123,
-        max: 456,
+        max: 456
       },
       options: {
         inputMinMax: {

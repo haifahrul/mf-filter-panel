@@ -2,7 +2,7 @@ import * as React from 'react';
 // import clsx from 'clsx';
 import { createStyles, InputAdornment, makeStyles, TextField, Theme } from '@material-ui/core';
 import { IInputAdornmentProps, IInputMinMaxProps } from './interfaces';
-import { TFilterMinMax } from '../types';
+import { TFilterMinMax } from './types';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -83,6 +83,7 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
                 // }}
                 // style={[classes.input]}
                 style={{ fontSize: 14, fontFamily: 'Muli' }}
+                placeholder='Minimum'
                 InputProps={{
                     startAdornment: inputAdornment('start', props?.options?.adornment),
                     endAdornment: inputAdornment('end', props?.options?.adornment),
@@ -101,6 +102,7 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
                 label=''
                 id={props.field + 'Max'}
                 className={classes.textField}
+                placeholder='Maximum'
                 InputProps={{
                     startAdornment: inputAdornment('start', props?.options?.adornment),
                     endAdornment: inputAdornment('end', props?.options?.adornment),

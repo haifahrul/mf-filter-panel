@@ -19,6 +19,7 @@ import Button from '@material-ui/core/Button';
 import { IconCancel } from '../../icons';
 import { IFilterPanelFormMeta, IFilterPanelProps } from './interfaces';
 import InputMinMax from './InputMinMax/InputMinMax';
+import DateRange from './DateRange/DateRange';
 
 const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
     const classes = useStyles();
@@ -46,12 +47,12 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
                     };
                     initState = { min: '', max: '' };
                     break;
-                case 'dateMinMax':
+                case 'dateRange':
                     value = {
-                        min: p?.value?.min || '',
-                        max: p?.value?.max || ''
+                        start: p?.value?.start || null,
+                        end: p?.value?.end || null
                     }
-                    initState = { min: '', max: '' };
+                    initState = { start: null, end: null };
                     break;
                 case 'checkbox':
                     value = []
@@ -93,7 +94,27 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
     };
 
     const onChangeInputMaxMin = (field: string, values: object) => {
-        const newState = { ...state[field], ...values[field] }
+        const newState = { 
+            ...state[field], 
+            ...values[field]
+        }
+
+        setState({ 
+            ...state,
+            [field]: newState
+        });
+
+        props.onChange({
+            field,
+            values: newState
+        })
+    };
+
+    const onChangeDateRange = (field: string, values: object) => {
+        const newState = { 
+            ...state[field], 
+            ...values[field]
+        }
 
         setState({ 
             ...state,
@@ -116,6 +137,18 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
                 <Collapse in={collapse[prop.field]} timeout='auto' unmountOnExit>
                     <List component='div' disablePadding>
                         <ListItem button className={classes.nested}>
+                            
+                            {
+                                prop.type === 'dateRange' && 
+                                    <DateRange 
+                                        title={prop.title}
+                                        field={prop.field}
+                                        value={state[prop.field]}
+                                        options={prop.options?.dateRange}
+                                        onChange={onChangeDateRange}
+                                    />
+                            }
+
                             {
                                 prop.type === 'inputMinMax' && 
                                     <InputMinMax 
@@ -126,6 +159,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
                                         onChange={onChangeInputMaxMin}
                                     />
                             }
+
                         </ListItem>
                     </List>
                 </Collapse>

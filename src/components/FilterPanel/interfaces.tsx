@@ -1,4 +1,5 @@
-import { IInputMinMaxOptions, IInputMinMax } from './InputMinMax/interfaces';
+import { IDateRange, IDateRangeOptions } from './DateRange/interfaces';
+import { IInputMinMax, IInputMinMaxOptions } from './InputMinMax/interfaces';
 import { TFilterType } from './types';
 
 export interface IFilterPanelCore {
@@ -17,19 +18,21 @@ export interface IFilterPanelProps {
 
 export interface IFilterPanelFormMeta extends IFilterPanelCore {
     type: TFilterType;
-    value?: IInputMinMax;
+    value?: IFilterPanelValue;
     options?: IFilterPanelOptions;
 }
 
+export interface IFilterPanelValue extends IDateRange, IInputMinMax {}
+
 export interface IFilterPanelOptions {
-    date?: {};
-    dateMinMax?: {};
+    // date?: {}; // TODO
+    dateRange?: IDateRangeOptions;
     checkbox?: {};
-    input?: {};
+    // input?: {}; // TODO
     inputMinMax?: IInputMinMaxOptions;
 }
 
 export interface IFilterPanelOnChange {
     field: string;
-    values: object|string|number|boolean;
+    values: object | string | number | boolean;
 }
