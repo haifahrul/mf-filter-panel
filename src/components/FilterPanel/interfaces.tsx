@@ -1,3 +1,4 @@
+import { ICheckbox, ICheckboxOptions } from './Checkbox/interfaces';
 import { IDateRange, IDateRangeOptions } from './DateRange/interfaces';
 import { IInputMinMax, IInputMinMaxOptions } from './InputMinMax/interfaces';
 import { TFilterType } from './types';
@@ -8,7 +9,7 @@ export interface IFilterPanelCore {
 }
 
 export interface IFilterPanelProps {
-    anchor?: 'right';
+    readonly anchor?: 'right';
     open: boolean;
     formMeta: IFilterPanelFormMeta[];
     onClose: () => void;
@@ -17,13 +18,27 @@ export interface IFilterPanelProps {
 }
 
 /**
+ * 
+ * There is 3 types of filter form:
+ * 
+ * 1. Date Range
+ * 2. Input Min Max
+ * 3. Checkbox
+ * 
+ * *NOTE:
+ * 
+ * Type `'Checkbox'` must be have a key value and have
+ * at least 1 object or interface ICheckbox. 
+ * 
+ * Please check an example below.
+ * 
  * Usage:
  *          
         [
             {
-                title: "Order Date",
-                type: "dateRange",
-                field: "orderDate",
+                title: 'Order Date',
+                type: 'dateRange',
+                field: 'orderDate',
                 value: {
                     start: '2021-06-20',
                     end: '2021-06-22'
@@ -37,9 +52,9 @@ export interface IFilterPanelProps {
                 }
             },
             {
-                title: "Store Order Total",
-                type: "inputMinMax",
-                field: "storeOrderTotal",
+                title: 'Store Order Total',
+                type: 'inputMinMax',
+                field: 'storeOrderTotal',
                 value: {
                     min: 123,
                     max: 456
@@ -47,11 +62,21 @@ export interface IFilterPanelProps {
                 options: {
                     inputMinMax: {
                         adornment: {
-                            label: "Rp",
-                            position: "start"
+                            label: 'Rp',
+                            position: 'start'
                         },
                     },
                 },
+            },
+            {
+                title: 'Payment Type',
+                type: 'checkbox',
+                field: 'paymentType',
+                value: [
+                    { label: 'Bayar Nanti', name: 'payNow', value: '1', checked: false },
+                    { label: 'Bayar Sekarang', name: 'payLatter', value: '2', checked: false },
+                    { label: 'Bayar di Tempat', name: 'cod', value: '3', checked: false }
+                ]
             }
         ]
  */
@@ -61,17 +86,17 @@ export interface IFilterPanelFormMeta extends IFilterPanelCore {
     /**
      * The value must be match with type
      * 
-     * e.g. 
+     * e.g. type `dateRange` key value is `'start'` and `'end'`
      * 
      *      {
-     *          type: "dateRange",
+     *          type: 'dateRange',
      *          value: {
      *              start: '2021-06-20',
      *              end: '2021-06-22'
      *          }
      *      }   
      */ 
-    value?: IFilterPanelValue;
+    value?: IDateRange | IInputMinMax | ICheckbox[];
 
     /**
      * The options must be match with type
@@ -79,13 +104,13 @@ export interface IFilterPanelFormMeta extends IFilterPanelCore {
      * e.g. 
      * 
      *      {
-     *          type: "dateRange",
+     *          type: 'dateRange',
      *          options: {
      *              dateRange: {
-                        variant: "inline",
-                        minDate: "2021-06-20",
-                        maxDate: "2021-06-28",
-                        inputVariant: "standard",
+     *                  variant: 'inline',
+     *                  minDate: '2021-06-20',
+     *                  maxDate: '2021-06-28',
+     *                  inputVariant: 'standard',
      *              }
      *          }
      *      }   
@@ -93,13 +118,11 @@ export interface IFilterPanelFormMeta extends IFilterPanelCore {
     options?: IFilterPanelOptions;
 }
 
-export interface IFilterPanelValue extends IDateRange, IInputMinMax {}
-
 export interface IFilterPanelOptions {
-    // date?: {}; // TODO
+    // date?: {}; // TODO: if necessary
     dateRange?: IDateRangeOptions;
-    checkbox?: {};
-    // input?: {}; // TODO
+    checkbox?: ICheckboxOptions;
+    // input?: {}; // TODO: if necessary
     inputMinMax?: IInputMinMaxOptions;
 }
 

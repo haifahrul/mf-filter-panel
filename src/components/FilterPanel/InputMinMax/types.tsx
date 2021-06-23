@@ -1,1 +1,1 @@
-export type TFilterMinMax = 'min' | 'max';
+export type TFilterInputMinMax = 'min' | 'max';

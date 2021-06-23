@@ -9,12 +9,12 @@ export interface IDateRangeOptions {
     /**
      * Default is dialog
      */ 
-    variant?: TFilterDateRangeVariant;
+    readonly variant?: TFilterDateRangeVariant;
 
     /**
      * Default is outlined
      */ 
-    inputVariant?: TFilterDateRangeInputVariant;
+    readonly inputVariant?: TFilterDateRangeInputVariant;
 
     /**
      * Default 'DD-MM-YYYY'. Date using moment.js
@@ -61,9 +61,3 @@ export interface IDateRangeProps extends IFilterPanelCore {
     options?: IDateRangeOptions;
     onChange: (field: string, values: object) => void;
 }
-
-export interface IInputAdornmentProps {
-    label: string;
-    position: 'start' | 'end';
-}
-

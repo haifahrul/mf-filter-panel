@@ -6,7 +6,7 @@ export interface IInputMinMaxOptions {
     /**
      * Default is outlined
      */ 
-    variant?: 'standard' | 'outlined' | 'filled';
+    readonly variant?: 'standard' | 'outlined' | 'filled';
 }
 
 export interface IInputMinMax {
@@ -22,6 +22,6 @@ export interface IInputMinMaxProps extends IFilterPanelCore {
 
 export interface IInputAdornmentProps {
     label: string;
-    position: 'start' | 'end';
+    readonly position: 'start' | 'end';
 }
 

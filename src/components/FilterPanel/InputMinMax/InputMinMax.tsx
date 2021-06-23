@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme: Theme) =>
             '& .MuiTextField-root': {
                 margin: theme.spacing(1),
                 fontSize: 14, 
-            fontFamily: 'Muli',
-            color: 'red'
+                fontFamily: 'Muli',
+                color: 'red'
                 // width: '25ch',
             },
             '& .MuiOutlinedInput-root': {

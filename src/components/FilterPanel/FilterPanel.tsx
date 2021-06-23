@@ -20,6 +20,10 @@ import { IconCancel } from '../../icons';
 import { IFilterPanelFormMeta, IFilterPanelProps } from './interfaces';
 import InputMinMax from './InputMinMax/InputMinMax';
 import DateRange from './DateRange/DateRange';
+import FilterCheckbox from './Checkbox/Checkbox';
+import { IDateRange } from './DateRange/interfaces';
+import { IInputMinMax } from './InputMinMax/interfaces';
+import { ICheckbox } from './Checkbox/interfaces';
 
 const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
     const classes = useStyles();
@@ -40,26 +44,34 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
             let initState: any = null
 
             switch (p.type) {
-                case 'inputMinMax':
-                    value = {
-                        min: p?.value?.min || '',
-                        max: p?.value?.max || ''
-                    };
-                    initState = { min: '', max: '' };
-                    break;
                 case 'dateRange':
                     value = {
-                        start: p?.value?.start || null,
-                        end: p?.value?.end || null
+                        start: (p?.value as IDateRange)?.start || null,
+                        end: (p?.value as IDateRange)?.end || null
                     }
                     initState = { start: null, end: null };
                     break;
+                case 'inputMinMax':
+                    value = {
+                        min: (p?.value as IInputMinMax)?.min || '',
+                        max: (p?.value as IInputMinMax)?.max || ''
+                    };
+                    initState = { min: '', max: '' };
+                    break;
                 case 'checkbox':
-                    value = []
-                    initState = [];
+                    if (!p?.value) {
+                        console.error('Component Filter List: Form Checkbox must be fill value');
+                        break;
+                    } else if ((p?.value as ICheckbox[])?.length < 1) {
+                        console.error('Component Filter List: Form Checkbox must be fill at least 1 value object or interface ICheckbox');
+                        break;
+                    }
+
+                    value = p?.value || [] 
+                    initState = p?.value || []
                     break;
                 default:
-                    console.error('Form meta: field type is unknown');
+                    console.error('Component Filter List: Form meta: key type is unknown');
                     break;
             }
             obj = { ...obj, [p.field]: value } 
@@ -127,6 +139,18 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
         })
     };
 
+    const onChangeCheckbox = (field: string, values: object) => {
+        setState({ 
+            ...state,
+            [field]: values[field]
+        });
+
+        props.onChange({
+            field,
+            values: values[field]
+        })
+    };
+
     const layout = (prop: IFilterPanelFormMeta, index: number) => {
         return (
             <React.Fragment key={index}>
@@ -157,6 +181,17 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
                                         value={state[prop.field]}
                                         options={prop.options?.inputMinMax}
                                         onChange={onChangeInputMaxMin}
+                                    />
+                            }
+
+                            {
+                                prop.type === 'checkbox' && 
+                                    <FilterCheckbox
+                                        title={prop.title}
+                                        field={prop.field}
+                                        value={state[prop.field]}
+                                        options={prop.options?.checkbox}
+                                        onChange={onChangeCheckbox}
                                     />
                             }
 
