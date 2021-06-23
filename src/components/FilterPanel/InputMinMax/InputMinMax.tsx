@@ -2,7 +2,7 @@ import * as React from 'react';
 // import clsx from 'clsx';
 import { createStyles, InputAdornment, makeStyles, TextField, Theme } from '@material-ui/core';
 import { IInputAdornmentProps, IInputMinMaxProps } from './interfaces';
-import { TFilterMinMax } from './types';
+import { TFilterInputMinMax } from './types';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -64,7 +64,7 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
     const classes = useStyles();
     const variant: any = props?.options?.variant || 'outlined';
     
-    const handleChange = (prop: TFilterMinMax, value: string|number) => {
+    const handleChange = (prop: TFilterInputMinMax, value: string|number) => {
         props.onChange(props.field, {
             [props.field]: {
                 [prop]: value

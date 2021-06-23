@@ -14,49 +14,44 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
-            '& .MuiTextField-root': {
-                margin: theme.spacing(1),
-                fontSize: 14, 
-                fontFamily: 'Muli',
-                color: 'red'
-                // width: '25ch',
-            },
-            '& .MuiOutlinedInput-root': {
-                fontSize: 14, 
-                fontFamily: 'Muli',
-                // color: 'red',
-                height: 36
+            '& .MuiCheckbox-root': {
+                fontSize: 16,
+                color: 'green'
             }
+            // '& .MuiTextField-root': {
+            //     margin: theme.spacing(1),
+            //     fontSize: 14, 
+            //     fontFamily: 'Muli',
+            //     color: 'red'
+            //     // width: '25ch',
+            // },
+            // '& .MuiOutlinedInput-root': {
+            //     fontSize: 14, 
+            //     fontFamily: 'Muli',
+            //     // color: 'red',
+            //     height: 36
+            // }
         },
         formControl: {
-            margin: theme.spacing(3),
+            margin: theme.spacing(1),
+            // marginTop: '-10px',
+            // marginBottom: 6,
+        },
+        formLabel: {
+            margin: theme.spacing(1),
+            // height: 36,
+            marginTop: theme.spacing(4)
         },
         margin: {
             margin: theme.spacing(1),
         },
-        withoutLabel: {
-            marginTop: theme.spacing(3),
-        },
+        // withoutLabel: {
+        //     marginTop: theme.spacing(3),
+        // },
         textField: {
             width: '100%',
             marginBottom: 8
         },
-        textField2: {
-            fontSize: 14, 
-            fontFamily: 'Muli',
-            color: 'red'
-        },
-        // focused: {
-            // border: '1px solid #E8E8E8'
-            // border: {
-
-            //     borderColor: '#E8E8E8'
-            // }
-        // },
-        input: {
-            color: 'red',
-            fontSize: 12
-        }
     })
 );
 
@@ -98,7 +93,7 @@ const FilterCheckbox: React.FC<ICheckboxProps> = (props: ICheckboxProps) => {
                 
                 {
                     props?.options?.formLabel &&
-                        <FormLabel component='legend'>{props?.options?.formLabel}</FormLabel>
+                        <FormLabel className={classes.formControl} component='legend'>{props?.options?.formLabel}</FormLabel>
                 }
 
                 <FormGroup>

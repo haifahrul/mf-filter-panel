@@ -33,7 +33,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
     const [collapse, setCollapse] = React.useState<{[key: string]: boolean}>({});
     const [defaultState, setDefaultState]  = React.useState<{[key: string]: any}>();
     const [state, setState] = React.useState<{[key: string]: any}>(); // main state
-    const [stateReady, setStateReady] = useState(false) 
+    const [stateReady, setStateReady] = useState(false); 
 
     // initial state
     useEffect(() => {
@@ -42,14 +42,14 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
 
         props.formMeta.forEach((p: IFilterPanelFormMeta) => {
             let value: any = null;
-            let initState: any = null
+            let initState: any = null;
 
             switch (p.type) {
                 case 'dateRange':
                     value = {
                         start: (p?.value as IDateRange)?.start || null,
                         end: (p?.value as IDateRange)?.end || null
-                    }
+                    };
                     initState = { start: null, end: null };
                     break;
                 case 'inputMinMax':
@@ -68,24 +68,24 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
                         break;
                     }
 
-                    value = p?.value || [] 
+                    value = p?.value || []; 
                     initState = (p?.value as ICheckbox[]).map(item => {
                         return {
                             ...item,
                             checked: false
-                        }
-                    })
+                        };
+                    });
                     break;
                 default:
                     console.error('Component Filter List: Form meta: key type is unknown');
                     break;
             }
-            obj = { ...obj, [p.field]: value } 
-            initStates = { ...initStates, [p.field]: initState }
+            obj = { ...obj, [p.field]: value }; 
+            initStates = { ...initStates, [p.field]: initState };
         });
 
         setState({ ...obj });
-        setDefaultState({ ...initStates })
+        setDefaultState({ ...initStates });
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);    
@@ -93,7 +93,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
     // checking is state ready
     useEffect(() => {
         if (state) {
-            setStateReady(true)
+            setStateReady(true);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state]);
@@ -103,7 +103,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
     };
 
     const onClickReset = () => {
-        setState({ ...defaultState })
+        setState({ ...defaultState });
     };
 
     const onClickSubmit = (event: React.BaseSyntheticEvent) => {
@@ -115,7 +115,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
         const newState = { 
             ...state[field], 
             ...values[field]
-        }
+        };
 
         setState({ 
             ...state,
@@ -125,14 +125,14 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
         props.onChange({
             field,
             values: newState
-        })
+        });
     };
 
     const onChangeDateRange = (field: string, values: object) => {
         const newState = { 
             ...state[field], 
             ...values[field]
-        }
+        };
 
         setState({ 
             ...state,
@@ -142,7 +142,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
         props.onChange({
             field,
             values: newState
-        })
+        });
     };
 
     const onChangeCheckbox = (field: string, values: object) => {
@@ -154,7 +154,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
         props.onChange({
             field,
             values: values[field]
-        })
+        });
     };
 
     const layout = (prop: IFilterPanelFormMeta, index: number) => {
