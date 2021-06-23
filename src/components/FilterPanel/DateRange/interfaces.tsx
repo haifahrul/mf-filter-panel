@@ -2,19 +2,58 @@ import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { IFilterPanelCore } from '../interfaces';
 import { TFilterDateRangeInputVariant, TFilterDateRangeVariant } from './types';
 
+/**
+ * Date parsing, validating, manipulating and displaying date/time use moment.js
+ */
 export interface IDateRangeOptions {
-    variant?: TFilterDateRangeVariant; // default is dialog
-    inputVariant?: TFilterDateRangeInputVariant; // default is outlined
-    format?: string; // default 'DD-MM-YYYY'. Date using moment.js
-    minDate?: string; // default moment('1900-01-01')
-    maxDate?: string; // default now + 1 day. Date using moment.js
+    /**
+     * Default is dialog
+     */ 
+    variant?: TFilterDateRangeVariant;
+
+    /**
+     * Default is outlined
+     */ 
+    inputVariant?: TFilterDateRangeInputVariant;
+
+    /**
+     * Default 'DD-MM-YYYY'. Date using moment.js
+     */
+    format?: string;
+
+    /**
+     * Default moment('1900-01-01')
+     */
+    minDate?: string;
+
+    /**
+     * Default now() + 1 day
+     */
+    maxDate?: string;
 }
 
 export interface IDateRange {
-    start?: string; // e.g. MM-DD-YYYY' or 'YYYY-MM-DD
-    end?: string; // e.g. MM-DD-YYYY' or 'YYYY-MM-DD
-    startRaw?: MaterialUiPickersDate; // full raw of moment.js
-    endRaw?: MaterialUiPickersDate; // full raw of moment.js
+    /**
+     * Accepted format date
+     * e.g. 'MM-DD-YYYY', 'YYYY-MM-DD' and 'MM/DD/YYYY'
+     */
+    start?: string;
+
+    /**
+     * Accepted format date
+     * e.g. 'MM-DD-YYYY', 'YYYY-MM-DD' and 'MM/DD/YYYY'
+     */
+    end?: string;
+
+    /**
+     * Return the full date of moment
+     */
+    startRaw?: MaterialUiPickersDate;
+
+    /**
+     * Return the full date of moment
+     */
+    endRaw?: MaterialUiPickersDate;
 }
 
 export interface IDateRangeProps extends IFilterPanelCore {

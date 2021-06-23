@@ -1,6 +1,10 @@
 import React, { useRef } from "react";
 import Button from "@material-ui/core/Button";
-import { IFilterPanelFormMeta, FilterPanel, IFilterPanelOnChange } from "./components";
+import {
+  IFilterPanelFormMeta,
+  FilterPanel,
+  IFilterPanelOnChange,
+} from "./components";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 // import './App.css';
 import "./App.scss";
@@ -12,16 +16,17 @@ function App() {
       type: "dateRange",
       field: "orderDate",
       value: {
-        start: '2021-06-20',
-        end: '2021-06-22'
+        start: "2021-06-20",
+        end: "2021-06-22",
       },
       options: {
         dateRange: {
-          variant: 'inline',
-          minDate: '2021-06-20',
-          maxDate: '2021-06-28'
-        }
-      }
+          variant: "inline",
+          minDate: "2021-06-20",
+          maxDate: "2021-06-28",
+          inputVariant: "standard",
+        },
+      },
     },
     {
       title: "Payment Due Date",
@@ -39,7 +44,7 @@ function App() {
       field: "storeOrderTotal",
       value: {
         min: 123,
-        max: 456
+        max: 456,
       },
       options: {
         inputMinMax: {
@@ -111,12 +116,12 @@ function App() {
   //   const classes = useStyles();
 
   const handleSubmitFilterList = (event: any) => {
-    console.log('handleSubmitFilterList:', event);
-  }
+    console.log("handleSubmitFilterList:", event);
+  };
 
   const handleChangeFilterList = (event: IFilterPanelOnChange) => {
-    console.log('handleChangeFilterList:', event);
-  }
+    console.log("handleChangeFilterList:", event);
+  };
 
   const filterListModalRef = useRef<HTMLDivElement>(null);
 

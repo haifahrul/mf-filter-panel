@@ -2,7 +2,11 @@ import { IFilterPanelCore } from '../interfaces';
 
 export interface IInputMinMaxOptions {
     adornment?: IInputAdornmentProps;
-    variant?: 'standard' | 'outlined' | 'filled'; // default is outlined
+
+    /**
+     * Default is outlined
+     */ 
+    variant?: 'standard' | 'outlined' | 'filled';
 }
 
 export interface IInputMinMax {
