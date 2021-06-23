@@ -17,6 +17,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { IconCancel } from '../../icons';
+// import ClearIcon from '@material-ui/icons/Clear';
 import { IFilterPanelFormMeta, IFilterPanelProps } from './interfaces';
 import InputMinMax from './InputMinMax/InputMinMax';
 import DateRange from './DateRange/DateRange';
@@ -68,7 +69,12 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
                     }
 
                     value = p?.value || [] 
-                    initState = p?.value || []
+                    initState = (p?.value as ICheckbox[]).map(item => {
+                        return {
+                            ...item,
+                            checked: false
+                        }
+                    })
                     break;
                 default:
                     console.error('Component Filter List: Form meta: key type is unknown');
@@ -215,6 +221,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
                     <ListItemText classes={{ primary: classes.headerTitle }} primary='Filter List' />
                     <ListItemSecondaryAction>
                         <IconCancel onClick={props.onClose} width='18px' fill='black' />
+                        {/* <ClearIcon onClick={props.onClose} fontSize="large"/> */}
                     </ListItemSecondaryAction>
                 </ListItem>
             </List>

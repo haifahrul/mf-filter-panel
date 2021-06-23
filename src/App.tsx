@@ -95,20 +95,27 @@ function App() {
       type: 'checkbox',
       field: 'payLaterType',
       value: [
-        { label: 'Bayar Nanti', name: 'payNow', value: '1', checked: false }
+        { label: 'Supplier', name: 'supplier', value: '1', checked: false },
+        { label: 'Supplier with KUR KlikACC', name: 'supplier_kur_click_acc', value: '2', checked: false }
       ]
     },
     {
       title: 'Order Status',
       type: 'checkbox',
       field: 'orderStatus',
-      value: []
+      value: [
+        { label: 'New Order', name: 'new_order', value: '1', checked: false },
+        { label: 'Packed', name: 'packed', value: '2', checked: false },
+      ]
     },
     {
       title: 'Payment Status',
       type: 'checkbox',
       field: 'paymentStatus',
-      value: []
+      value: [
+        { label: 'Waiting for Payment', name: 'waiting_for_payment', value: '1', checked: false },
+        { label: 'Overdue', name: 'overdue', value: '2', checked: false },
+      ]
     },
   ];
 
