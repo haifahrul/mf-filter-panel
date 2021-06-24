@@ -3,15 +3,11 @@ import { makeStyles, Theme, createMuiTheme, ThemeProvider } from '@material-ui/c
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-// import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-// import StarBorder from '@material-ui/icons/StarBorder';
-
 import Collapse from '@material-ui/core/Collapse';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
 import { Drawer } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -25,6 +21,95 @@ import FilterCheckbox from './Checkbox/Checkbox';
 import { IDateRange } from './DateRange/interfaces';
 import { IInputMinMax } from './InputMinMax/interfaces';
 import { ICheckbox } from './Checkbox/interfaces';
+
+
+const useStyles = makeStyles((theme: Theme) => ({
+    root: {
+        fontFamily: 'Muli',
+        fontSize: '16px',
+        fontWeight: 'normal',
+        fontStretch: 'normal',
+        marginBottom: 60,
+        '& input': {
+            fontSize: 12,
+            '& hover:': {
+                border: '1px solid blue'
+            },
+            '& focus:': {
+                border: '1px solid red'
+            }
+        }
+    },
+    header: {
+        padding: '3px 0 0 16px'
+    },
+    headerTitle: {
+        fontSize: '16px',
+        fontWeight: 'bold',        
+        color: '#25282B'
+    },
+    footer: {
+        position: 'fixed',
+        bottom: 0,
+        width: '100%'
+    },
+    footerActions: {
+        display: 'flex',
+        justifyContent: 'center',
+        padding: 16
+    },
+    listItemText: {
+        fontSize: 14,
+        color: '#25282B'
+    },
+    contentText: {
+        fontStyle: 'normal',
+        fontWeight: 600,
+        fontSize: '12px',
+        color: '#25282B'
+    },
+    resetButton: {
+        backgroundColor: theme.palette.background.paper,
+        height: 32,
+        fontFamily: 'Muli',
+        fontStyle: 'normal',
+        fontWeight: 600,
+        fontSize: 14,
+        color: '#52575C',
+        textTransform: 'capitalize'
+    },
+    submitButton: {
+        'backgroundColor': '#F0444C',
+        'height': 32,
+        'fontFamily': 'Muli',
+        'fontStyle': 'normal',
+        'fontWeight': 600,
+        'fontSize': 14,
+        'color': '#ffffff',
+        'textTransform': 'capitalize',
+        '&:hover': {
+            backgroundColor: '#F0444C'
+        }
+    },
+    buttonDisabled: {
+        cursor: 'default',
+        pointerEvents: 'none'
+    },
+    nested: {
+        paddingLeft: '17px'
+    }
+}));
+
+const muiTheme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#ffffff',
+        },
+        secondary: {
+            main: '#f0444c'
+        }
+    },
+});
 
 const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
     const classes = useStyles();
@@ -289,84 +374,5 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
         </ThemeProvider>
     );
 };
-
-const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        fontFamily: 'Muli',
-        fontSize: '16px',
-        fontWeight: 'normal',
-        fontStretch: 'normal',
-        marginBottom: 60
-    },
-    header: {
-        padding: '3px 0 0 16px'
-    },
-    headerTitle: {
-        fontSize: '16px',
-        fontWeight: 'bold',        
-        color: '#25282B'
-    },
-    footer: {
-        position: 'fixed',
-        bottom: 0,
-        width: '100%'
-    },
-    footerActions: {
-        display: 'flex',
-        justifyContent: 'center',
-        padding: 16
-    },
-    listItemText: {
-        fontSize: 14,
-        color: '#25282B'
-    },
-    contentText: {
-        fontStyle: 'normal',
-        fontWeight: 600,
-        fontSize: '12px',
-        color: '#25282B'
-    },
-    resetButton: {
-        backgroundColor: theme.palette.background.paper,
-        height: 32,
-        fontFamily: 'Muli',
-        fontStyle: 'normal',
-        fontWeight: 600,
-        fontSize: 14,
-        color: '#52575C',
-        textTransform: 'capitalize'
-    },
-    submitButton: {
-        'backgroundColor': '#F0444C',
-        'height': 32,
-        'fontFamily': 'Muli',
-        'fontStyle': 'normal',
-        'fontWeight': 600,
-        'fontSize': 14,
-        'color': '#ffffff',
-        'textTransform': 'capitalize',
-        '&:hover': {
-            backgroundColor: '#F0444C'
-        }
-    },
-    buttonDisabled: {
-        cursor: 'default',
-        pointerEvents: 'none'
-    },
-    nested: {
-        paddingLeft: '17px'
-    }
-}));
-
-const muiTheme = createMuiTheme({
-    palette: {
-        primary: {
-            main: '#ffffff',
-        },
-        secondary: {
-            main: '#f0444c'
-        }
-    },
-});
 
 export default FilterPanel;

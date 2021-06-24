@@ -1,52 +1,20 @@
 import * as React from 'react';
-// import clsx from 'clsx';
 import { createStyles, InputAdornment, makeStyles, TextField, Theme } from '@material-ui/core';
 import { IInputAdornmentProps, IInputMinMaxProps } from './interfaces';
 import { TFilterInputMinMax } from './types';
+import './InputMinMax.scss'
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            '& .MuiTextField-root': {
-                margin: theme.spacing(1),
-                fontSize: 14, 
-                fontFamily: 'Muli',
-                color: 'red'
-                // width: '25ch',
-            },
-            '& .MuiOutlinedInput-root': {
-                fontSize: 14, 
-                fontFamily: 'Muli',
-                // color: 'red',
-                height: 36
+            '& input': {
+                height: 1
             }
-        },
-        margin: {
-            margin: theme.spacing(1),
-        },
-        withoutLabel: {
-            marginTop: theme.spacing(3),
         },
         textField: {
             width: '100%',
-            marginBottom: 8
+            marginBottom: 12
         },
-        textField2: {
-            fontSize: 14, 
-            fontFamily: 'Muli',
-            color: 'red'
-        },
-        // focused: {
-            // border: '1px solid #E8E8E8'
-            // border: {
-
-            //     borderColor: '#E8E8E8'
-            // }
-        // },
-        input: {
-            color: 'red',
-            fontSize: 12
-        }
     })
 );
 
@@ -54,7 +22,7 @@ const inputAdornment = (pos: 'start' | 'end', props: IInputAdornmentProps|undefi
     let component = null;
 
     if (props?.position === pos) {
-        component = <InputAdornment position={props?.position}>{props?.label}</InputAdornment>;
+        component = <InputAdornment position={props?.position}><span className='__InputAdornment-root'>{props?.label}</span></InputAdornment>;
     }
 
     return component;
@@ -78,20 +46,13 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
                 label=''
                 id={props.field + 'Min'}
                 className={classes.textField}
-                // classes={{
-                //     root: classes.root
-                // }}
-                // style={[classes.input]}
-                style={{ fontSize: 14, fontFamily: 'Muli' }}
                 placeholder='Minimum'
                 InputProps={{
                     startAdornment: inputAdornment('start', props?.options?.adornment),
                     endAdornment: inputAdornment('end', props?.options?.adornment),
                 }}
                 InputLabelProps={{
-                    className: classes.input,
                     shrink: true,
-                    variant: 'filled'
                 }}
                 variant={variant}
                 value={props?.value?.min}
@@ -108,8 +69,7 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
                     endAdornment: inputAdornment('end', props?.options?.adornment),
                 }}
                 InputLabelProps={{
-                    className: classes.input,
-                    shrink: true
+                    shrink: true,
                 }}
                 variant={variant}
                 value={props?.value?.max}

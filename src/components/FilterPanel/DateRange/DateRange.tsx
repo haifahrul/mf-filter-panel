@@ -15,49 +15,11 @@ import moment from 'moment';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
-            '& .MuiTextField-root': {
-                margin: theme.spacing(1),
-                fontSize: 14, 
-                fontFamily: 'Muli',
-                color: 'red'
-                // width: '25ch',
-            },
-            '& .MuiOutlinedInput-root': {
-                fontSize: 14, 
-                fontFamily: 'Muli',
-                // color: 'red',
-                height: 36
-            },
-            '& .MuiFormControl': {
-                height: 36
-            }
-        },
-        margin: {
-            margin: theme.spacing(1),
-        },
-        withoutLabel: {
-            marginTop: theme.spacing(3),
-        },
-        textField: {
+        keyboardDatePicker: {
             width: '100%',
-            marginBottom: 8
         },
-        textField2: {
-            fontSize: 14, 
-            fontFamily: 'Muli',
-            color: 'red'
-        },
-        // focused: {
-            // border: '1px solid #E8E8E8'
-            // border: {
-
-            //     borderColor: '#E8E8E8'
-            // }
-        // },
-        input: {
-            color: 'red',
-            fontSize: 12
+        keyboardButton: {
+            color: '#F0444C'
         }
     })
 );
@@ -97,12 +59,12 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
     };
 
     return (
-        <div className={classes.root}>
+        <div>
             <MuiPickersUtilsProvider utils={MomentUtils}>
                 
                 <KeyboardDatePicker
-                    className={classes.textField}
-                    margin='normal'
+                    className={classes.keyboardDatePicker}
+                    margin='dense'
                     id={props.field + 'Start'}
                     label=''
                     placeholder='Start'
@@ -117,12 +79,13 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
                     views={views}
                     KeyboardButtonProps={{
                         'aria-label': 'change date',
+                        className: classes.keyboardButton
                     }}
                 />
 
                 <KeyboardDatePicker
-                    className={classes.textField}
-                    margin='normal'
+                    className={classes.keyboardDatePicker}
+                    margin='dense'
                     id={props.field + 'End'}
                     label=''
                     placeholder='End'
@@ -137,6 +100,7 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
                     views={views}
                     KeyboardButtonProps={{
                         'aria-label': 'change date',
+                        className: classes.keyboardButton
                     }}
                 />
 
