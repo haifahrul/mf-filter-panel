@@ -35,6 +35,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
     const [state, setState] = React.useState<{[key: string]: any}>(); // main state
     const [stateReady, setStateReady] = useState(false); 
     const [widthPanel, setWidthPanel] = useState(280)
+    const [widthButton, setWidthButton] = useState(118)
 
     // initial state
     useEffect(() => {
@@ -89,7 +90,8 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
         setDefaultState({ ...initStates });
 
         if (props?.width) {
-            setWidthPanel(props?.width)
+            setWidthPanel(props.width);
+            setWidthButton(props.width - 162);
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -245,11 +247,25 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
 
             <Card className={classes.footer}>
                 <Divider />
-                <CardActions className={classes.footerActions}>
-                    <Button type='reset' variant='contained' size='medium' className={classes.resetButton} onClick={onClickReset}> 
+                <CardActions className={classes.footerActions} style={{width: widthPanel}}>
+                    <Button 
+                        type='reset'
+                        variant='contained'
+                        size='medium' 
+                        className={classes.resetButton} 
+                        onClick={onClickReset}
+                        style={{width: widthButton}}
+                    > 
                         Reset
                     </Button>
-                    <Button type='submit' variant='contained' size='medium' className={classes.submitButton} onClick={onClickSubmit}>
+                    <Button 
+                        type='submit' 
+                        variant='contained' 
+                        size='medium' 
+                        className={classes.submitButton} 
+                        onClick={onClickSubmit}
+                        style={{width: widthButton}}
+                    >
                         Apply
                     </Button>
                 </CardActions>
@@ -298,8 +314,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     footerActions: {
         display: 'flex',
         justifyContent: 'center',
-        width: 280,
-        padding: 12
+        padding: 16
     },
     listItemText: {
         fontSize: 14,
@@ -313,9 +328,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     resetButton: {
         backgroundColor: theme.palette.background.paper,
-        width: 118,
-        minWidth: 118,
-        maxWidth: 118,
         height: 32,
         fontFamily: 'Muli',
         fontStyle: 'normal',
@@ -326,9 +338,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     submitButton: {
         'backgroundColor': '#F0444C',
-        'width': 118,
-        'minWidth': 118,
-        'maxWidth': 118,
         'height': 32,
         'fontFamily': 'Muli',
         'fontStyle': 'normal',
