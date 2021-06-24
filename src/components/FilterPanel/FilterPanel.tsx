@@ -34,6 +34,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
     const [defaultState, setDefaultState]  = React.useState<{[key: string]: any}>();
     const [state, setState] = React.useState<{[key: string]: any}>(); // main state
     const [stateReady, setStateReady] = useState(false); 
+    const [widthPanel, setWidthPanel] = useState(280)
 
     // initial state
     useEffect(() => {
@@ -86,6 +87,10 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
 
         setState({ ...obj });
         setDefaultState({ ...initStates });
+
+        if (props?.width) {
+            setWidthPanel(props?.width)
+        }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);    
@@ -198,6 +203,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
                                         value={state[prop.field]}
                                         options={prop.options?.checkbox}
                                         onChange={onChangeCheckbox}
+                                        width={widthPanel}
                                     />
                             }
 
@@ -210,7 +216,12 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
 
     const list = () => (
         <form
-            className={classes.root} 
+            className={classes.root}
+            style={{
+                width: widthPanel,
+                minWidth: widthPanel,
+                maxWidth: widthPanel
+            }}
             noValidate 
             autoComplete='off'
             role='presentation'
@@ -254,7 +265,6 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
                         anchor={anchor}
                         open={props.open}
                         onClose={props.onClose}
-                        className={classes.root}
                     >
                         {list()}
                     </Drawer>
@@ -270,10 +280,6 @@ const useStyles = makeStyles((theme: Theme) => ({
         fontSize: '16px',
         fontWeight: 'normal',
         fontStretch: 'normal',
-        textTransform: 'capitalize',
-        width: 280,
-        minWidth: 280,
-        maxWidth: 280,
         marginBottom: 60
     },
     header: {
@@ -335,12 +341,11 @@ const useStyles = makeStyles((theme: Theme) => ({
         }
     },
     buttonDisabled: {
-        // opacity: 30%;
         cursor: 'default',
         pointerEvents: 'none'
     },
     nested: {
-        paddingLeft: theme.spacing(2)
+        paddingLeft: '17px'
     }
 }));
 

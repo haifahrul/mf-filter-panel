@@ -97,7 +97,12 @@ function App() {
 			value: [
 				{ label: 'Supplier', name: 'supplier', value: '1', checked: false },
 				{ label: 'Supplier with KUR KlikACC', name: 'supplier_kur_click_acc', value: '2', checked: false }
-			]
+			],
+			options: {
+				checkbox: {
+					column: 2
+				}
+			}
 		},
 		{
 			title: 'Order Status',
@@ -106,7 +111,18 @@ function App() {
 			value: [
 				{ label: 'New Order', name: 'new_order', value: '1', checked: false },
 				{ label: 'Packed', name: 'packed', value: '2', checked: false },
-			]
+				{ label: 'Shipped', name: 'shipped', value: '3', checked: false },
+				{ label: 'Awaiting to be verified', name: 'awating_verified', value: '4', checked: false },
+				{ label: 'Delivered', name: 'delivered', value: '5', checked: false },
+				{ label: 'Done', name: 'done', value: '6', checked: false },
+				{ label: 'Canceled', name: 'canceled', value: '7', checked: false },
+				{ label: 'Pending Supplier', name: 'pending_supplier', value: '8', checked: false }
+			],
+			options: {
+				checkbox: {
+					column: 2
+				}
+			}
 		},
 		{
 			title: 'Payment Status',
@@ -115,7 +131,16 @@ function App() {
 			value: [
 				{ label: 'Waiting for Payment', name: 'waiting_for_payment', value: '1', checked: false },
 				{ label: 'Overdue', name: 'overdue', value: '2', checked: false },
-			]
+				{ label: 'Paid', name: 'paid', value: '3', checked: false },
+				{ label: 'Waiting for Refund', name: 'waiting_for_refund', value: '4', checked: false },
+				{ label: 'Refunded', name: 'refunded', value: '5', checked: false },
+				{ label: 'Payment Failed', name: 'payment_failed', value: '6', checked: false }
+			],
+			options: {
+				checkbox: {
+					column: 2
+				}
+			}
 		},
 	];
 
@@ -155,6 +180,7 @@ function App() {
 						onClose={handleCloseFilterList}
 						onSubmit={handleSubmitFilterList}
 						onChange={handleChangeFilterList}
+						width={380}
 					/>
 				</div>
 			</ThemeProvider>

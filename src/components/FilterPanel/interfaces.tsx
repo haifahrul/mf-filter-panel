@@ -15,6 +15,11 @@ export interface IFilterPanelProps {
     onClose: () => void;
     onSubmit: (form: object) => void;
     onChange?: (event: IFilterPanelOnChange) => void;
+
+    /**
+     * Default width is `280px`
+     */
+    width?: number;
 }
 
 /**
