@@ -22,7 +22,6 @@ import { IDateRange } from './DateRange/interfaces';
 import { IInputMinMax } from './InputMinMax/interfaces';
 import { ICheckbox } from './Checkbox/interfaces';
 
-
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
         fontFamily: 'Muli',
@@ -31,13 +30,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         fontStretch: 'normal',
         marginBottom: 60,
         '& input': {
-            fontSize: 12,
-            '& hover:': {
-                border: '1px solid blue'
-            },
-            '& focus:': {
-                border: '1px solid red'
-            }
+            fontSize: 12
         }
     },
     header: {

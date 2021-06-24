@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '100%',
         },
         keyboardButton: {
-            color: '#F0444C'
+            color: '#F0444C',
+            padding: '12px 0'
         }
     })
 );

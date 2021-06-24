@@ -13,8 +13,11 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         textField: {
             width: '100%',
-            marginBottom: 12
-        },
+            marginBottom: 12,
+            '& input': {
+                textAlign: 'right',
+            }
+        }
     })
 );
 
@@ -52,7 +55,7 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
                     endAdornment: inputAdornment('end', props?.options?.adornment),
                 }}
                 InputLabelProps={{
-                    shrink: true,
+                    shrink: true
                 }}
                 variant={variant}
                 value={props?.value?.min}
