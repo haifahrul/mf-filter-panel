@@ -39,51 +39,51 @@ export interface IFilterPanelProps {
  * 
  * Usage:
  *          
-        [
-            {
-                title: 'Order Date',
-                type: 'dateRange',
-                field: 'orderDate',
-                value: {
-                    start: '2021-06-20',
-                    end: '2021-06-22'
-                },
-                options: {
-                    dateRange: {
-                        variant: 'inline',
-                        minDate: '2021-06-20',
-                        maxDate: '2021-06-28'
-                    }
-                }
-            },
-            {
-                title: 'Store Order Total',
-                type: 'inputMinMax',
-                field: 'storeOrderTotal',
-                value: {
-                    min: 123,
-                    max: 456
-                },
-                options: {
-                    inputMinMax: {
-                        adornment: {
-                            label: 'Rp',
-                            position: 'start'
-                        },
-                    },
-                },
-            },
-            {
-                title: 'Payment Type',
-                type: 'checkbox',
-                field: 'paymentType',
-                value: [
-                    { label: 'Bayar Nanti', name: 'payNow', value: '1', checked: false },
-                    { label: 'Bayar Sekarang', name: 'payLatter', value: '2', checked: false },
-                    { label: 'Bayar di Tempat', name: 'cod', value: '3', checked: false }
-                ]
-            }
-        ]
+ *      [
+ *          {
+ *              title: 'Order Date',
+ *              type: 'dateRange',
+ *              field: 'orderDate',
+ *              value: {
+ *                  start: '2021-06-20',
+ *                  end: '2021-06-22'
+ *              },
+ *              options: {
+ *                  dateRange: {
+ *                      variant: 'inline',
+ *                      minDate: '2021-06-20',
+ *                      maxDate: '2021-06-28'
+ *                  }
+ *              }
+ *          },
+ *          {
+ *              title: 'Store Order Total',
+ *              type: 'inputMinMax',
+ *              field: 'storeOrderTotal',
+ *              value: {
+ *                  min: 123,
+ *                  max: 456
+ *              },
+ *              options: {
+ *                  inputMinMax: {
+ *                      adornment: {
+ *                          label: 'Rp',
+ *                          position: 'start'
+ *                      },
+ *                  },
+ *              },
+ *          },
+ *          {
+ *              title: 'Payment Type',
+ *              type: 'checkbox',
+ *              field: 'paymentType',
+ *              value: [
+ *                  { label: 'Bayar Nanti', name: 'payNow', value: '1', checked: false },
+ *                  { label: 'Bayar Sekarang', name: 'payLatter', value: '2', checked: false },
+ *                  { label: 'Bayar di Tempat', name: 'cod', value: '3', checked: false }
+ *              ]
+ *          }
+ *      ]
  */
 export interface IFilterPanelFormMeta extends IFilterPanelCore {
     type: TFilterType;

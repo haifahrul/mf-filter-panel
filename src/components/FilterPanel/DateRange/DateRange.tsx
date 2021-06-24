@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 import MomentUtils from '@date-io/moment';
 import {
     MuiPickersUtilsProvider,
@@ -11,7 +12,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { IDateRangeProps } from './interfaces';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { TFilterDateRange } from './types';
-import moment from 'moment';
+import * as moment from 'moment';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -32,8 +33,8 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
     const formatDate = props?.options?.format || 'DD/MM/YYYY';
     const variant = props?.options?.variant || 'dialog';
     const inputVariant = props?.options?.inputVariant || 'outlined';
-    const startDate = props?.value?.start ? moment(props?.value?.start, stringFormats) : null
-    const endDate = props?.value?.end ? moment(props?.value?.end, stringFormats) : null
+    const startDate = props?.value?.start ? moment(props?.value?.start, stringFormats) : null;
+    const endDate = props?.value?.end ? moment(props?.value?.end, stringFormats) : null;
     
     const [minDate, setMinDate] = useState(moment('1900-01-01', stringFormats));
     const [maxDate, setMaxDate] = useState(moment());
@@ -46,7 +47,7 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
         if (props?.options?.maxDate) {
             setMaxDate(moment(props?.options?.maxDate, stringFormats));
         }
-    }, [])
+    }, []);
     
     const handleChange = (prop: TFilterDateRange, date: MaterialUiPickersDate) => {
         if (date) {
@@ -80,7 +81,7 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
                     views={views}
                     KeyboardButtonProps={{
                         'aria-label': 'change date',
-                        className: classes.keyboardButton
+                        'className': classes.keyboardButton
                     }}
                 />
 
@@ -101,7 +102,7 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
                     views={views}
                     KeyboardButtonProps={{
                         'aria-label': 'change date',
-                        className: classes.keyboardButton
+                        'className': classes.keyboardButton
                     }}
                 />
 

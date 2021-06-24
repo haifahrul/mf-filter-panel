@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createStyles, InputAdornment, makeStyles, TextField, Theme } from '@material-ui/core';
 import { IInputAdornmentProps, IInputMinMaxProps } from './interfaces';
 import { TFilterInputMinMax } from './types';
-import './InputMinMax.scss'
+import './InputMinMax.scss';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme: Theme) =>
             }
         },
         textField: {
-            width: '100%',
-            marginBottom: 12,
+            'width': '100%',
+            'marginBottom': 12,
             '& input': {
                 textAlign: 'right',
             }
