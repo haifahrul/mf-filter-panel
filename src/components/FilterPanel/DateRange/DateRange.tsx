@@ -70,11 +70,6 @@ const muiTheme = createMuiTheme({
                 backgroundColor: 'white'
             }
         },
-        MuiPickersModal: {
-            dialogAction: {
-                color: 'red',
-            },
-        },
         MuiPickersYear: {
             root: {
                 fontSize: 12,
