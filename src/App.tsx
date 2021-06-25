@@ -58,6 +58,10 @@ function App() {
 			title: 'Supplier Delivered Total',
 			type: 'inputMinMax',
 			field: 'supplierDeliveredTotal',
+			value: {
+				min: 9999,
+				max: 456,
+			},
 			options: {
 				inputMinMax: {
 					adornment: {
