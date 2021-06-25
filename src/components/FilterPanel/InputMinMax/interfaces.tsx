@@ -10,8 +10,8 @@ export interface IInputMinMaxOptions {
 }
 
 export interface IInputMinMax {
-    min?: string | number;
-    max?: string | number;
+    min?: number;
+    max?: number;
 }
 
 export interface IInputMinMaxProps extends IFilterPanelCore {

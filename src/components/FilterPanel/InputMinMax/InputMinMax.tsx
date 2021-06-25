@@ -36,8 +36,8 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
     const classes = useStyles();
     const variant: any = props?.options?.variant || 'outlined';
 
-    const handleChange = (type: TFilterInputMinMax, value: string|number) => {
-        const amount = NumberCleaner((value as string));
+    const handleChange = (type: TFilterInputMinMax, value: string) => {
+        const amount = NumberCleaner(value);
 
         props.onChange(props.field, {
             [props.field]: {
@@ -46,8 +46,8 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
         });
     };
 
-    const amountMasking = (value: any) => {
-        return NumberCleaner((value as string)).masking;
+    const amountMasking = (value: number) => {
+        return NumberCleaner(value.toString()).masking;
     }
 
     return (
