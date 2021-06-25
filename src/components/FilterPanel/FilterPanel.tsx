@@ -89,7 +89,10 @@ const useStyles = makeStyles((theme: Theme) => ({
         pointerEvents: 'none'
     },
     nested: {
-        paddingLeft: '17px'
+        paddingLeft: '17px',
+        '&:hover': {
+            backgroundColor: 'transparent'
+        }
     }
 }));
 

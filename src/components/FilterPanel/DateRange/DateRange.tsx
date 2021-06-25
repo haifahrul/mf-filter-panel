@@ -52,7 +52,9 @@ const muiTheme = createMuiTheme({
             }
         },
         MuiPickersCalendarHeader: {
-            fontSize: 12,
+            dayLabel: {
+                fontSize: 12
+            },
             switchHeader: {
                 backgroundColor: 'white',
                 color: '#25282B',
