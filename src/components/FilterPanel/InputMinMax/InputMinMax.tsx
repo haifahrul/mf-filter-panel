@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createStyles, InputAdornment, makeStyles, TextField, Theme } from '@material-ui/core';
 import { IInputAdornmentProps, IInputMinMaxProps } from './interfaces';
 import { TFilterInputMinMax } from './types';
-import { NumberCleaner } from './utils';
+import { NumberCleaner, NumberMasking } from './utils';
 import './InputMinMax.scss';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -41,13 +41,19 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
 
         props.onChange(props.field, {
             [props.field]: {
-                [type]: amount.real
+                [type]: amount || amount === 0 
+                    ? amount
+                    : ''
             }
         });
     };
 
     const amountMasking = (value: number) => {
-        return NumberCleaner(value.toString()).masking;
+        if (value || value === 0) {
+            return NumberMasking(NumberCleaner(value.toString()));
+        } else {
+            return ''
+        }
     }
 
     return (
