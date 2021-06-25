@@ -168,7 +168,7 @@ function App() {
 
 	return (
 		<div className={'react-payment-status-container'}>
-			<ThemeProvider theme={theme}>
+			<ThemeProvider theme={muiTheme}>
 				<Button size='large' variant='contained' onClick={handleOpenFilterList}>
 					Filter List
 				</Button>
@@ -257,7 +257,7 @@ function App() {
 // }));
 
 // @ts-ignore
-const theme = createMuiTheme({
+const muiTheme = createMuiTheme({
 	palette: {
 		primary: {
 			main: '#ffffff',
