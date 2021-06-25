@@ -2,6 +2,7 @@ import * as React from 'react';
 import { createStyles, InputAdornment, makeStyles, TextField, Theme } from '@material-ui/core';
 import { IInputAdornmentProps, IInputMinMaxProps } from './interfaces';
 import { TFilterInputMinMax } from './types';
+import { NumberCleaner } from './utils';
 import './InputMinMax.scss';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -34,17 +35,28 @@ const inputAdornment = (pos: 'start' | 'end', props: IInputAdornmentProps|undefi
 const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
     const classes = useStyles();
     const variant: any = props?.options?.variant || 'outlined';
-    
-    const handleChange = (prop: TFilterInputMinMax, value: string|number) => {
+
+    const handleChange = (type: TFilterInputMinMax, value: string|number) => {
+        const amount = NumberCleaner((value as string));
+
         props.onChange(props.field, {
             [props.field]: {
-                [prop]: value
+                [type]: amount.real
             }
         });
     };
 
+    const amountMasking = (value: any) => {
+        return NumberCleaner((value as string)).masking;
+    }
+
     return (
         <div className={classes.root}>
+            <TextField
+                id={props.field + 'MinRaw'}
+                type='hidden'
+                value={props?.value?.min}
+            />
             <TextField
                 label=''
                 id={props.field + 'Min'}
@@ -53,15 +65,20 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
                 InputProps={{
                     startAdornment: inputAdornment('start', props?.options?.adornment),
                     endAdornment: inputAdornment('end', props?.options?.adornment),
+                    value: amountMasking(props?.value?.min)
                 }}
                 InputLabelProps={{
                     shrink: true
                 }}
                 variant={variant}
-                value={props?.value?.min}
                 onChange={event => {handleChange('min', event.target.value); }}
             />
 
+            <TextField
+                id={props.field + 'MaxRaw'}
+                type='hidden'
+                value={props?.value?.max}
+            />
             <TextField
                 label=''
                 id={props.field + 'Max'}
@@ -70,12 +87,12 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
                 InputProps={{
                     startAdornment: inputAdornment('start', props?.options?.adornment),
                     endAdornment: inputAdornment('end', props?.options?.adornment),
+                    value: amountMasking(props?.value?.max)
                 }}
                 InputLabelProps={{
                     shrink: true,
                 }}
                 variant={variant}
-                value={props?.value?.max}
                 onChange={event => {handleChange('max', event.target.value); }}
             />
         </div>
