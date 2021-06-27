@@ -7,7 +7,6 @@ import {
 	IFilterPanelOnSubmit
 } from './components/FilterPanel';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-// import './App.css';
 import './App.scss';
 
 function App() {
@@ -159,8 +158,6 @@ function App() {
 		setOpenFilterList(false);
 	};
 
-	//   const classes = useStyles();
-
 	const handleSubmitFilterList = (event: IFilterPanelOnSubmit) => {
 		console.log('handleSubmitFilterList:', event);
 	};
@@ -190,76 +187,8 @@ function App() {
 				</div>
 			</ThemeProvider>
 		</div>
-
-		// <div className='App'>
-		//   <header className='App-header'>
-		//     <img src={logo} className='App-logo' alt='logo' />
-		//     <p>
-		//       Edit ok <code>src/App.tsx</code> and save to reload.
-		//     </p>
-		//     <a
-		//       className='App-link'
-		//       href='https://reactjs.org'
-		//       target='_blank'
-		//       rel='noopener noreferrer'
-		//     >
-		//       Learn React
-		//     </a>
-		//   </header>
-		// </div>
 	);
 }
-
-// tslint:disable-next-line:no-shadowed-variable
-// const useStyles = makeStyles((theme: Theme) => ({
-//   container: {
-//       display: 'flex',
-//       flexWrap: 'wrap',
-//   },
-//   textField: {
-//       marginLeft: theme.spacing(1),
-//       marginRight: theme.spacing(1),
-//       width: 200,
-//   },
-//   whiteButton: {
-//       backgroundColor: theme.palette.background.paper
-//   },
-//   greyButton: {
-//       'backgroundColor': '#52575C',
-//       'color': '#FFFFFF',
-//       '&:hover': {
-//           backgroundColor: '#52575C',
-//           color: '#FFFFFF',
-//       },
-//   },
-//   table: {
-//       minWidth: 650,
-//   },
-//   root: {
-//       flexGrow: 1,
-//       backgroundColor: theme.palette.background.paper,
-//   },
-//   rootsearch: {
-//       padding: '2px 4px',
-//       display: 'flex',
-//       width: 389,
-//   },
-//   input: {
-//       marginLeft: theme.spacing(1),
-//       flex: 1,
-//   },
-//   widthFull: {
-//       width: '100%',
-//       fontSize: '1em'
-//   },
-//   iconButton: {
-//       padding: 10,
-//   },
-//   divider: {
-//       height: 28,
-//       margin: 4,
-//   },
-// }));
 
 // @ts-ignore
 const muiTheme = createMuiTheme({
