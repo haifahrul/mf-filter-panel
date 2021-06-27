@@ -69,7 +69,7 @@ function App() {
 			field: 'checkboxType1',
 			value: [
 				{ label: 'Opt 1', name: 'checkboxType11', value: '1', checked: true },
-				{ label: 'Opy 2', name: 'checkboxType12', value: '2', checked: false },
+				{ label: 'Opt 2', name: 'checkboxType12', value: '2', checked: false },
 				{ label: 'Opt 3', name: 'checkboxType13', value: '3', checked: true }
 			]
 		},
@@ -79,14 +79,14 @@ function App() {
 			field: 'checkboxType2',
 			value: [
 				{ label: 'Opt 1', name: 'checkboxType21', value: '1', checked: false },
-				{ label: 'Opy 2', name: 'checkboxType22', value: '2', checked: false },
-				{ label: 'Opt 3', name: 'checkboxType23', value: '3', checked: false }
+				{ label: 'Opt 2', name: 'checkboxType22', value: '2', checked: false },
+				{ label: 'Opt 3', name: 'checkboxType23', value: '3', checked: false },
+				{ label: 'Opt 4', name: 'checkboxType24', value: '4', checked: false },
+				{ label: 'Opt 5', name: 'checkboxType25', value: '5', checked: false },
 			],
 			options: {
 				checkbox: {
-					column: 2,
-					formLabel: 'Form Label',
-					formText: 'Form Text'
+					column: 2
 				}
 			}
 		}
