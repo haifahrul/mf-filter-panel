@@ -3,7 +3,8 @@ import Button from '@material-ui/core/Button';
 import {
 	FilterPanel,
 	IFilterPanelFormMeta,
-	IFilterPanelOnChange
+	IFilterPanelOnChange,
+	IFilterPanelOnSubmit
 } from './components/FilterPanel';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 // import './App.css';
@@ -160,7 +161,7 @@ function App() {
 
 	//   const classes = useStyles();
 
-	const handleSubmitFilterList = (event: any) => {
+	const handleSubmitFilterList = (event: IFilterPanelOnSubmit) => {
 		console.log('handleSubmitFilterList:', event);
 	};
 

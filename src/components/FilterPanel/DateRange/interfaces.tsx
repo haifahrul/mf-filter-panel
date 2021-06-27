@@ -17,9 +17,14 @@ export interface IDateRangeOptions {
     readonly inputVariant?: TFilterDateRangeInputVariant;
 
     /**
-     * Default 'DD-MM-YYYY'. Date using moment.js
+     * Default 'DD/MM/YYYY'. Date using moment.js
      */
     format?: string;
+
+    /**
+     * Default 'YYYY-MM-DD'. Date using moment.js
+     */
+    outputFormatDate?: string;
 
     /**
      * Default moment('1900-01-01')
@@ -59,5 +64,5 @@ export interface IDateRange {
 export interface IDateRangeProps extends IFilterPanelCore {
     value?: IDateRange;
     options?: IDateRangeOptions;
-    onChange: (field: string, values: object) => void;
+    onChange: (field: string, value: IDateRange) => void;
 }

@@ -143,6 +143,7 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
     const views: DatePickerView[] = ['year', 'month', 'date'];
     const stringFormats = ['MM-DD-YYYY', 'YYYY-MM-DD', 'DD/MM/YYYY'];
     const formatDate = props?.options?.format || 'DD/MM/YYYY';
+    const outputFormatDate = props?.options?.outputFormatDate || 'YYYY-MM-DD';
     const variant = props?.options?.variant || 'dialog';
     const inputVariant = props?.options?.inputVariant || 'outlined';
     const startDate = props?.value?.start ? moment(props?.value?.start, stringFormats) : null;
@@ -206,15 +207,13 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
         setType(type);
 
         if (date) {
-            dF = date.format(formatDate);
+            dF = date.format(outputFormatDate);
             d = date;
         }
 
         props.onChange(props.field, {
-            [props.field]: {
-                [type]: dF,
-                [type + 'Raw']: d
-            }
+            [type]: dF,
+            [type + 'Raw']: d
         });
     };
 

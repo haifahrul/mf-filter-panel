@@ -13,7 +13,7 @@ export interface IFilterPanelProps {
     open: boolean;
     formMeta: IFilterPanelFormMeta[];
     onClose: () => void;
-    onSubmit: (form: object) => void;
+    onSubmit: (event: IFilterPanelOnSubmit) => void;
     onChange?: (event: IFilterPanelOnChange) => void;
 
     /**
@@ -123,6 +123,8 @@ export interface IFilterPanelFormMeta extends IFilterPanelCore {
     options?: IFilterPanelOptions;
 }
 
+export interface IFilterPanelFormMetaValue extends IDateRange, IInputMinMax, Array<ICheckbox> {}
+
 export interface IFilterPanelOptions {
     // date?: {}; // TODO: if necessary
     dateRange?: IDateRangeOptions;
@@ -133,5 +135,16 @@ export interface IFilterPanelOptions {
 
 export interface IFilterPanelOnChange {
     field: string;
-    values: object | string | number | boolean;
+    value: object | string | number | boolean;
+}
+
+export interface IFilterPanelOnSubmit {
+    value: object;
+    formMeta: IFilterPanelFormMeta[];
+}
+
+export interface IUpdateFormMeta {
+    field: string;
+    type: TFilterType;
+    value: IDateRange | IInputMinMax | ICheckbox[];
 }

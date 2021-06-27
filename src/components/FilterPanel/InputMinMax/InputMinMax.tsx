@@ -86,11 +86,9 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
         setType(type);
         
         props.onChange(props.field, {
-            [props.field]: {
-                [type]: amount || amount === 0 
-                    ? amount
-                    : ''
-            }
+            [type]: amount || amount === 0 
+                ? amount
+                : ''
         });
     };
 

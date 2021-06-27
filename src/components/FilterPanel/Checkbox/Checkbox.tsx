@@ -31,8 +31,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const FilterCheckbox: React.FC<ICheckboxProps> = (props: ICheckboxProps) => {
     const classes = useStyles();
-    const lengthValue = props?.value.length;
-    const [limit, setLimit] = useState<number>(props.value.length);
+    const valueLength = props?.value?.length || 0;
+    const lengthValue = valueLength;
+    const [limit, setLimit] = useState<number>(valueLength);
     const width = (props.width/2)-10;
 
     useEffect(() => {
@@ -54,11 +55,7 @@ const FilterCheckbox: React.FC<ICheckboxProps> = (props: ICheckboxProps) => {
             return item
         });
 
-        props.onChange(props.field, {
-            [props.field]: [
-                ...items
-            ]
-        });
+        props.onChange(props.field, items);
     };
 
     const layoutCheckbox = (item: ICheckbox, index: number) => {
@@ -98,7 +95,7 @@ const FilterCheckbox: React.FC<ICheckboxProps> = (props: ICheckboxProps) => {
 
                     <FormGroup>
                         {
-                            props?.value?.length > 0 && props?.value.map((p: ICheckbox, i: number) => {
+                            valueLength > 0 && props?.value.map((p: ICheckbox, i: number) => {
                                 if (index === 1 && i < limit) {
                                     return (
                                         layoutCheckbox(p, i)

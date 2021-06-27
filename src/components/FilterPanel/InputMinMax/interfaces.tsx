@@ -17,7 +17,7 @@ export interface IInputMinMax {
 export interface IInputMinMaxProps extends IFilterPanelCore {
     value?: IInputMinMax;
     options?: IInputMinMaxOptions;
-    onChange: (field: string, values: object) => void;
+    onChange: (field: string, value: IInputMinMax) => void;
 }
 
 export interface IInputAdornmentProps {

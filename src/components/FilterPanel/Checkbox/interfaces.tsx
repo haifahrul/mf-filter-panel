@@ -21,5 +21,5 @@ export interface ICheckboxProps extends IFilterPanelCore {
     value?: ICheckbox[];
     options?: ICheckboxOptions;
     width?: number;
-    onChange: (field: string, values: object) => void;
+    onChange: (field: string, value: ICheckbox[]) => void;
 }
