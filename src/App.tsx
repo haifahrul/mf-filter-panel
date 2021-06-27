@@ -22,7 +22,7 @@ function App() {
 			options: {
 				dateRange: {
 					variant: 'inline',
-					minDate: '2021-06-20',
+					minDate: '2020-06-20',
 					maxDate: '2021-06-28'
 				},
 			},

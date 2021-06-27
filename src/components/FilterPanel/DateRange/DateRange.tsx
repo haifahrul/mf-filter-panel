@@ -23,6 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
         keyboardButton: {
             color: '#F0444C',
             padding: '12px 0'
+        },
+        helperText: {
+            fontSize: 12,
+            marginLeft: 0
         }
     })
 );
@@ -129,7 +133,7 @@ const muiTheme = createMuiTheme({
     },
     palette: {
         primary: {
-            main: '#cacaca'
+            main: '#25282B'
         }
     }
   });
@@ -147,6 +151,44 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
     const [minDate, setMinDate] = useState(moment('1900-01-01', stringFormats));
     const [maxDate, setMaxDate] = useState(moment());
 
+    const [type, setType] = useState<TFilterDateRange|null>(null)
+    const [isStartError, setIsStartError] = useState<{error: boolean, text: string}>({
+        error: false,
+        text: ''
+    });
+    const [isEndError, setIsEndError] = useState<{error: boolean, text: string}>({
+        error: false,
+        text: ''
+    });
+
+    const clearValidation = (type: TFilterDateRange) => {
+        if (type === 'start') {
+            setIsStartError({
+                error: false,
+                text: ''
+            });
+        } else {
+            setIsEndError({
+                error: false,
+                text: ''
+            });
+        }
+    }
+    
+    const applyValidationError = (type: TFilterDateRange) => {
+        if (type === 'start') {
+            setIsStartError({
+                error: true,
+                text: 'Start Date tidak boleh lebih besar dari End Date'
+            });
+        } else if (type === 'end') {
+            setIsEndError({
+                error: true,
+                text: 'End Date tidak boleh lebih kecil dari Start Date'
+            });
+        }
+    }
+
     useEffect(() => {
         if (props?.options?.minDate) {
             setMinDate(moment(props?.options?.minDate, stringFormats));
@@ -157,9 +199,11 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
         }
     }, []);
     
-    const handleChange = (prop: TFilterDateRange, date: MaterialUiPickersDate) => {
+    const handleChange = (type: TFilterDateRange, date: MaterialUiPickersDate) => {
         let dF: string = null;
         let d: MaterialUiPickersDate = null; 
+
+        setType(type);
 
         if (date) {
             dF = date.format(formatDate);
@@ -168,11 +212,55 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
 
         props.onChange(props.field, {
             [props.field]: {
-                [prop]: dF,
-                [prop + 'Raw']: d
+                [type]: dF,
+                [type + 'Raw']: d
             }
         });
     };
+
+    useEffect(() => {
+        const start = props?.value?.startRaw;
+        const end = props?.value?.endRaw;
+
+        // Clear validation on reset - for type minimum only 
+        if (!props?.value?.end) {
+            clearValidation('end');
+        }
+
+        // Clear validation on reset - for type maximum only
+        if (!props?.value?.start) {
+            clearValidation('start');
+        }
+
+        // Validation on component mount
+        if (!type) {
+            if (end && start && !start.isSameOrBefore(end, 'days')) {
+                applyValidationError('start');
+            } else if (end && start && !start.isSameOrBefore(end, 'days')) {
+                applyValidationError('end');
+            }
+        }
+
+        // Validation on change
+        if (type === 'start') {
+            if (end && start && !start.isSameOrBefore(end, 'days')) {
+                applyValidationError('start');
+                clearValidation('end');
+            } else {
+                clearValidation('start');
+            }
+
+        } else if (type === 'end') {
+            if (end && start && !start.isSameOrBefore(end, 'days')) {
+                applyValidationError('end');
+                clearValidation('start');
+            } else {
+                clearValidation('end');
+            }
+
+        }
+
+    }, [props?.value?.start, props?.value?.end])
 
     return (
         <div>
@@ -199,6 +287,9 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
                             'aria-label': 'change start date',
                             'className': classes.keyboardButton
                         }}
+                        helperText={isStartError.text}
+                        FormHelperTextProps={{ className: classes.helperText  }}
+                        error={isStartError.error}
                     />
 
                     <KeyboardDatePicker
@@ -221,6 +312,9 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
                             'aria-label': 'change end date',
                             'className': classes.keyboardButton
                         }}
+                        helperText={isEndError.text}
+                        FormHelperTextProps={{ className: classes.helperText  }}
+                        error={isEndError.error}
                     />
 
                 </ThemeProvider>
