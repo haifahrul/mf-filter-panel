@@ -144,6 +144,7 @@ const InputMinMax: React.FC<IInputMinMaxProps> = (props: IInputMinMaxProps) => {
 
         }
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props?.value?.max, props?.value?.min])
 
     return (
