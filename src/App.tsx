@@ -121,6 +121,7 @@ function App() {
 
 				<div ref={filterListModalRef}>
 					<FilterPanel
+						headerTitle='Filter List Title'
 						open={openFilterList}
 						formMeta={formFilter}
 						onClose={handleCloseFilterList}

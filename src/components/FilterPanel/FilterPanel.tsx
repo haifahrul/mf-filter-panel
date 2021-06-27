@@ -114,6 +114,7 @@ const muiTheme = createMuiTheme({
 const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
     const classes = useStyles();
     const anchor = props.anchor ? props.anchor : 'right';
+    const headerTitle = props?.headerTitle || 'Filter Panel';
     
     const [collapse, setCollapse] = React.useState<{[key: string]: boolean}>({});
     const [defaultState, setDefaultState]  = React.useState<{[key: string]: IFilterPanelFormMetaValue}>();
@@ -406,7 +407,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
         >
             <List>
                 <ListItem className={classes.header}>
-                    <ListItemText classes={{ primary: classes.headerTitle }} primary='Filter List' />
+                    <ListItemText classes={{ primary: classes.headerTitle }} primary={headerTitle} />
                     <ListItemSecondaryAction>
                         <IconCancel onClick={props.onClose} width='18px' fill='black' />
                         {/* <ClearIcon onClick={props.onClose} fontSize="large"/> */}
