@@ -270,7 +270,6 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
                     <KeyboardDatePicker
                         className={classes.keyboardDatePicker}
                         margin='dense'
-                        clearable={true}
                         id={props.field + 'Start'}
                         label=''
                         placeholder='Start Date'
@@ -295,7 +294,6 @@ const DateRange: React.FC<IDateRangeProps> = (props: IDateRangeProps) => {
                     <KeyboardDatePicker
                         className={classes.keyboardDatePicker}
                         margin='dense'
-                        clearable={true}
                         id={props.field + 'End'}
                         label=''
                         placeholder='End Date'
