@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { ICheckbox, ICheckboxProps } from './interfaces';
