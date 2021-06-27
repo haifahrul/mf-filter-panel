@@ -8,144 +8,88 @@ import {
 } from './components/FilterPanel';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import './App.scss';
+import moment from 'moment';
 
 function App() {
 	const formFilter: IFilterPanelFormMeta[] = [
 		{
-			title: 'Order Date',
+			title: 'Date Inline with options min date & max date',
 			type: 'dateRange',
-			field: 'orderDate',
+			field: 'dateInline',
 			value: {
 				start: '2021-06-20',
-				end: '2021-06-22',
+				end: moment().format('YYYY-MM-DD'),
 			},
 			options: {
 				dateRange: {
 					variant: 'inline',
-					minDate: '2020-06-20',
-					maxDate: '2021-06-28'
+					minDate: moment().subtract(5, 'days').format('YYYY-MM-DD'),
+					maxDate: moment().add(5, 'days').format('YYYY-MM-DD')
 				},
 			},
 		},
 		{
-			title: 'Payment Due Date',
+			title: 'Date Modal with default options',
 			type: 'dateRange',
-			field: 'paymentDueDate',
+			field: 'dateModal',
 		},
 		{
-			title: 'Payment Date',
-			type: 'dateRange',
-			field: 'paymentDate',
-		},
-		{
-			title: 'Store Order Total',
+			title: 'Input Amount 1',
 			type: 'inputMinMax',
-			field: 'storeOrderTotal',
+			field: 'amountRange1',
 			value: {
-				min: 123,
-				max: 456,
+				min: 1000,
+				max: 2000,
 			},
 			options: {
 				inputMinMax: {
 					adornment: {
-						label: 'Rp',
+						label: 'IDR',
 						position: 'start',
 					},
 				},
 			},
 		},
 		{
-			title: 'Supplier Delivered Total',
+			title: 'Input Amount 2',
 			type: 'inputMinMax',
-			field: 'supplierDeliveredTotal',
-			value: {
-				min: 9999,
-				max: 456,
-			},
+			field: 'amountRange2',
 			options: {
 				inputMinMax: {
 					adornment: {
-						label: 'Rp',
-						position: 'start',
+						label: 'USD',
+						position: 'end',
 					},
 				},
 			},
 		},
 		{
-			title: 'Store Payment Total',
-			type: 'inputMinMax',
-			field: 'storePaymentTotal',
-			options: {
-				inputMinMax: {
-					adornment: {
-						label: 'Rp',
-						position: 'start',
-					},
-				},
-			},
-		},
-		{
-			title: 'Payment Type',
+			title: 'Checkbox 1 column',
 			type: 'checkbox',
-			field: 'paymentType',
+			field: 'checkboxType1',
 			value: [
-				{ label: 'Bayar Nanti', name: 'payNow', value: '1', checked: true },
-				{ label: 'Bayar Sekarang', name: 'payLatter', value: '2', checked: false },
-				{ label: 'Bayar di Tempat', name: 'cod', value: '3', checked: false }
+				{ label: 'Opt 1', name: 'checkboxType11', value: '1', checked: true },
+				{ label: 'Opy 2', name: 'checkboxType12', value: '2', checked: false },
+				{ label: 'Opt 3', name: 'checkboxType13', value: '3', checked: true }
 			]
 		},
 		{
-			title: 'Pay Later Type',
+			title: 'Checkbox 2 column',
 			type: 'checkbox',
-			field: 'payLaterType',
+			field: 'checkboxType2',
 			value: [
-				{ label: 'Supplier', name: 'supplier', value: '1', checked: false },
-				{ label: 'Supplier with KUR KlikACC', name: 'supplier_kur_click_acc', value: '2', checked: false }
+				{ label: 'Opt 1', name: 'checkboxType21', value: '1', checked: false },
+				{ label: 'Opy 2', name: 'checkboxType22', value: '2', checked: false },
+				{ label: 'Opt 3', name: 'checkboxType23', value: '3', checked: false }
 			],
 			options: {
 				checkbox: {
-					column: 2
+					column: 2,
+					formLabel: 'Form Label',
+					formText: 'Form Text'
 				}
 			}
-		},
-		{
-			title: 'Order Status',
-			type: 'checkbox',
-			field: 'orderStatus',
-			value: [
-				{ label: 'New Order', name: 'new_order', value: '1', checked: false },
-				{ label: 'Packed', name: 'packed', value: '2', checked: false },
-				{ label: 'Shipped', name: 'shipped', value: '3', checked: false },
-				{ label: 'Awaiting to be verified', name: 'awating_verified', value: '4', checked: false },
-				{ label: 'Delivered', name: 'delivered', value: '5', checked: false },
-				{ label: 'Done', name: 'done', value: '6', checked: false },
-				{ label: 'Canceled', name: 'canceled', value: '7', checked: false },
-				{ label: 'Pending Supplier', name: 'pending_supplier', value: '8', checked: false }
-			],
-			options: {
-				checkbox: {
-					column: 2
-				}
-			}
-		},
-		{
-			title: 'Payment Status',
-			type: 'checkbox',
-			field: 'paymentStatus',
-			value: [
-				{ label: 'Waiting for Payment', name: 'waiting_for_payment', value: '1', checked: false },
-				{ label: 'Overdue', name: 'overdue', value: '2', checked: false },
-				{ label: 'Paid', name: 'paid', value: '3', checked: false },
-				{ label: 'Waiting for Refund', name: 'waiting_for_refund', value: '4', checked: false },
-				{ label: 'Refunded', name: 'refunded', value: '5', checked: false },
-				{ label: 'Payment Failed', name: 'payment_failed', value: '6', checked: false }
-			],
-			options: {
-				checkbox: {
-					column: 2
-				}
-			}
-		},
+		}
 	];
 
 	const [openFilterList, setOpenFilterList] = React.useState(true);
