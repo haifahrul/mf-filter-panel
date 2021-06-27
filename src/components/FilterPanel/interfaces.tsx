@@ -9,18 +9,26 @@ export interface IFilterPanelCore {
 }
 
 export interface IFilterPanelProps {
+    /**
+     * Default anchor is `right`
+     */
     readonly anchor?: 'right' | 'left';
-    headerTitle: string;
-    open: boolean;
-    formMeta: IFilterPanelFormMeta[];
-    onClose: () => void;
-    onSubmit: (event: IFilterPanelOnSubmit) => void;
-    onChange?: (event: IFilterPanelOnChange) => void;
+
+    /**
+     * Default headerTitle is `Filter Panel`
+     */
+    headerTitle?: string;
 
     /**
      * Default width is `280px`
      */
     width?: number;
+
+    open: boolean;
+    formMeta: IFilterPanelFormMeta[];
+    onClose: () => void;
+    onSubmit: (event: IFilterPanelOnSubmit) => void;
+    onChange?: (event: IFilterPanelOnChange) => void;
 }
 
 /**
