@@ -43,8 +43,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     footer: {
         position: 'fixed',
-        bottom: 0,
-        width: '100%'
+        bottom: 0
     },
     footerActions: {
         display: 'flex',

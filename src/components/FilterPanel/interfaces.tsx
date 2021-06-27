@@ -9,7 +9,7 @@ export interface IFilterPanelCore {
 }
 
 export interface IFilterPanelProps {
-    readonly anchor?: 'right';
+    readonly anchor?: 'right' | 'left';
     headerTitle: string;
     open: boolean;
     formMeta: IFilterPanelFormMeta[];
