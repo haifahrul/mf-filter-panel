@@ -271,7 +271,10 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
             [field]: newState
         });
 
-        updateFormMeta({ type: 'inputMinMax', field, value });
+        updateFormMeta({ type: 'inputMinMax', field, value: {
+            min: newState.min,
+            max: newState.max
+        }});
 
         props.onChange({
             field,
@@ -290,7 +293,10 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
             [field]: newState
         });
 
-        updateFormMeta({ type: 'dateRange', field, value });
+        updateFormMeta({ type: 'dateRange', field, value: {
+            start: newState.start,
+            end: newState.end
+        }});
 
         props.onChange({
             field,
