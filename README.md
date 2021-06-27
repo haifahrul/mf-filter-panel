@@ -1,5 +1,7 @@
 # Component React Filter Panel
 
+Simple to create form filter with just create an array object. DRY
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
