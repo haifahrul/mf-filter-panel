@@ -4,6 +4,7 @@ Simple to create form filter with just create an array object. DRY
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+[<img src="https://github.com/haifahrul/mf-filter-panel/lighthouse.png">](http://github.com/)
 
 ## Usage
 You can see code at file `App.tsx` for more detail.
