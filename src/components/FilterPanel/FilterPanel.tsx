@@ -21,6 +21,7 @@ import FilterCheckbox from './Checkbox/Checkbox';
 import { IDateRange } from './DateRange/interfaces';
 import { IInputMinMax } from './InputMinMax/interfaces';
 import { ICheckbox } from './Checkbox/interfaces';
+import { formMetaToObjectValues } from './utils';
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -250,13 +251,19 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
             return meta;
         });
 
-        setFormMeta(fm)
+        setFormMeta(fm);
         setState({ ...defaultState });
         setIsSubmitDisabled(true);
+
+        if (props.onReset) {
+            props.onReset();
+        }
     };
 
     const onClickSubmit = (event: React.BaseSyntheticEvent) => {
-        props.onSubmit({ value: state, formMeta });
+        const query = formMetaToObjectValues(formMeta);
+
+        props.onSubmit({ value: state, formMeta, query });
         event.preventDefault();
     };
 

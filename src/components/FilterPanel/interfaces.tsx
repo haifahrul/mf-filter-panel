@@ -27,6 +27,7 @@ export interface IFilterPanelProps {
     open: boolean;
     formMeta: IFilterPanelFormMeta[];
     onClose: () => void;
+    onReset?: () => void;
     onSubmit: (event: IFilterPanelOnSubmit) => void;
     onChange?: (event: IFilterPanelOnChange) => void;
 }
@@ -150,6 +151,7 @@ export interface IFilterPanelOnChange {
 export interface IFilterPanelOnSubmit {
     value: object;
     formMeta: IFilterPanelFormMeta[];
+    query: object;
 }
 
 export interface IUpdateFormMeta {
