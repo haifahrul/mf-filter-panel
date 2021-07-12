@@ -14,16 +14,17 @@ You can see code at file `App.tsx` for more detail.
 
 ### FilterPanel Props
 
-| Name        	| Type                   	| Default      	| Description                                                      	|
-|-------------	|------------------------	|--------------	|------------------------------------------------------------------	|
-| anchor      	| left \| right          	| right        	| position of drawer                                               	|
-| headerTitle 	| string                 	| Filter Panel 	|                                                                  	|
-| width       	| number                 	| 280          	| max width 380 min width 280                                      	|
-| open *      	| boolean                	|              	| If true panel will show else panel will hidden                   	|
-| formMeta *  	| IFilterPanelFormMeta[] 	|              	| Array object of form                                             	|
-| onClose *   	| void                   	|              	| Func to close panel via Dismiss (X) icon on top right            	|
-| onSubmit *  	| IFilterPanelOnSubmit   	|              	| Func callback contains value of filter and formMeta filled value 	|
-| onChange    	| IFilterPanelOnChange   	|              	| Func callback on change on form                                  	|
+| Name        	| Type                   	| Default      	| Description                                                      	        |
+|-------------	|------------------------	|--------------	|------------------------------------------------------------------	        |
+| anchor      	| left \| right          	| right        	| position of drawer                                               	        |
+| headerTitle 	| string                 	| Filter Panel 	|                                                                  	        |
+| width       	| number                 	| 280          	| max width 380 min width 280                                      	        |
+| open *      	| boolean                	|              	| If true panel will show else panel will hidden                   	        |
+| formMeta *  	| IFilterPanelFormMeta[] 	|              	| Array object of form                                             	        |
+| onClose *   	| void                   	|              	| Func to close panel via Dismiss (X) icon on top right            	        |
+| onReset   	| void   	                |              	|                                                                 	        |
+| onSubmit *  	| IFilterPanelOnSubmit   	|              	| Func callback contains value of filter, formMeta & query filled value 	|
+| onChange    	| IFilterPanelOnChange   	|              	| Func callback on change on form                                  	        |
 
 Note: * is required
 
