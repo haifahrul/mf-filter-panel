@@ -126,7 +126,7 @@ function App() {
 						formMeta={formFilter}
 						onClose={handleCloseFilterList}
 						onSubmit={handleSubmitFilterList}
-						// onChange={handleChangeFilterList}
+						onChange={handleChangeFilterList}
 						width={380}
 					/>
 				</div>
