@@ -48,45 +48,11 @@ $fuse-navy: (
     ),
 );
 
-$sinbad: (
-    50: #fde9ea,
-    100: #fbc7c9,
-    200: #f8a2a6,
-    300: #f57c82,
-    400: #f26067,
-    500: #f0444c,
-    600: #ee3e45,
-    700: #ec353c,
-    800: #e92d33,
-    900: #e51f24,
-    A100: #ffffff,
-    A200: #ffe8e8,
-    A400: #ffb5b6,
-    A700: #ff9c9d,
-    contrast: (
-        50: $dark-primary-text,
-        100: $dark-primary-text,
-        200: $dark-primary-text,
-        300: $dark-primary-text,
-        400: $dark-primary-text,
-        500: $light-primary-text,
-        600: $light-primary-text,
-        700: $light-primary-text,
-        800: $light-primary-text,
-        900: $light-primary-text,
-        A100: $dark-primary-text,
-        A200: $dark-primary-text,
-        A400: $dark-primary-text,
-        A700: $dark-primary-text,
-    ),
-);
-
 // Generate Fuse color classes for custom palettes
 $custom_palettes: (
     fuse-white: $fuse-white,
     fuse-black: $fuse-black,
-    fuse-navy: $fuse-navy,
-    sinbad-accent: $sinbad,
+    fuse-navy: $fuse-navy
 );
 
 @include fuse-color-classes($custom_palettes);
@@ -112,46 +78,8 @@ $typography: mat-typography-config(
 // @ Component theming
 // -----------------------------------------------------------------------------------------------------
 
-// Import app and page component themes here to enable theming for them
-// @import 'src/app/layout/components/chat-panel/chat-panel.theme';
-// @import 'src/app/layout/components/toolbar/toolbar.theme';
-
-// Login page
-// @import 'src/app/core/auth/login/login.theme';
-
-// 403 page
-// @import 'src/app/core/errors/403/error-403.theme';
-// 404 page
-// @import 'src/app/core/errors/404/error-404.theme';
-
-// Sinbad store page
-// @import 'src/app/main/sinbad-store/sinbad-store.theme';
-
-// Order management page
-// @import 'src/app/main/order-management/order-management.theme';
-
 // Define a mixin for easier access
 @mixin components-theme($theme) {
-    // Layout components
-    // @include chat-panel-theme($theme);
-    // @include toolbar-theme($theme);
-
-    // // Login page
-    // @include login-theme($theme);
-
-    // // 403 page
-    // @include error-403-theme($theme);
-    // // 404 page
-    // @include error-404-theme($theme);
-
-    // // Sinbad store page
-    // @include sinbad-store-theme($theme);
-
-    // // Order management page
-    // @include order-management-theme($theme);
-
-    // // Sinbad point earning page
-    // @include sinbad-point-earning-theme($theme);
 }
 
 // Plugin https://github.com/kuhnroyal/mat-datetimepicker#installation
@@ -159,8 +87,6 @@ $typography: mat-typography-config(
 
 // Custom layout third party
 @mixin third-party-theme($theme) {
-    // Custom mat-datetimepicker
-    // @include mat-datetimepicker-theme($theme);
 }
 
 // -----------------------------------------------------------------------------------------------------
@@ -302,54 +228,6 @@ body.theme-pink-dark {
         primary: $pink-dark-theme-primary-palette,
         accent: $pink-dark-theme-accent-palette,
         warn: $pink-dark-theme-warn-palette,
-    );
-
-    @include fuse-color-classes($palettes);
-}
-
-// -----------------------------------------------------------------------------------------------------
-// @ Define a sinbad light theme
-// -----------------------------------------------------------------------------------------------------
-
-// Define the primary, accent and warn palettes
-$sinbad-light-theme-primary-palette: mat-palette($fuse-navy, 600, 400, 700);
-$sinbad-light-theme-accent-palette: mat-palette($sinbad);
-$sinbad-light-theme-warn-palette: mat-palette($mat-red);
-
-// Create the Material theme object
-$sinbad-light-theme: mat-light-theme(
-    $sinbad-light-theme-primary-palette,
-    $sinbad-light-theme-accent-palette,
-    $sinbad-light-theme-warn-palette
-);
-
-// Create the Material theme object
-$sinbad-third-party-light-theme: mat-light-theme(
-    mat-palette($sinbad, 600, 400, 700),
-    $sinbad-light-theme-accent-palette,
-    $sinbad-light-theme-warn-palette
-);
-
-// Add ".theme-sinbad-light" class to the body to activate this theme.
-// Class name must start with "theme-" !!!
-body.theme-sinbad-light {
-    // Generate the Angular Material theme
-    @include angular-material-theme($sinbad-light-theme);
-
-    // Apply the theme to the Fuse Core
-    @include fuse-core-theme($sinbad-light-theme);
-
-    // Apply the theme to the user components
-    @include components-theme($sinbad-light-theme);
-
-    // Apply the theme to third party
-    @include third-party-theme($sinbad-third-party-light-theme);
-
-    // Generate Fuse color classes for primary, accent and warn colors
-    $palettes: (
-        primary: $sinbad-light-theme-primary-palette,
-        accent: $sinbad-light-theme-accent-palette,
-        warn: $sinbad-light-theme-warn-palette,
     );
 
     @include fuse-color-classes($palettes);
