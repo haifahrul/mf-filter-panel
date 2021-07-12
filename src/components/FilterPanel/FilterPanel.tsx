@@ -14,7 +14,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { IconCancel } from '../../icons';
 // import ClearIcon from '@material-ui/icons/Clear';
-import { IFilterPanelFormMeta, IFilterPanelFormMetaValue, IFilterPanelProps, IUpdateFormMeta } from './interfaces';
+import { IFilterPanelFormMeta, IFilterPanelFormMetaValue, IFilterPanelOnChange, IFilterPanelProps, IUpdateFormMeta } from './interfaces';
 import InputMinMax from './InputMinMax/InputMinMax';
 import DateRange from './DateRange/DateRange';
 import FilterCheckbox from './Checkbox/Checkbox';
@@ -260,6 +260,15 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
         event.preventDefault();
     };
 
+    const onChangeField = (items: IFilterPanelOnChange): void => {
+        if (props.onChange) {
+            props.onChange({
+                field: items.field,
+                value: items.value
+            });   
+        }
+    };
+
     const onChangeInputMaxMin = (field: string, value: IInputMinMax) => {
         const newState = { 
             ...state[field], 
@@ -276,10 +285,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
             max: newState.max
         }});
 
-        props.onChange({
-            field,
-            value: newState
-        });
+        onChangeField({ field, value: newState });
     };
 
     const onChangeDateRange = (field: string, value: IDateRange) => {
@@ -298,10 +304,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
             end: newState.end
         }});
 
-        props.onChange({
-            field,
-            value: newState
-        });
+        onChangeField({ field, value: newState });
     };
 
     const onChangeCheckbox = (field: string, value: ICheckbox[]) => {
@@ -316,11 +319,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
         });
 
         updateFormMeta({ type: 'checkbox', field, value });
-
-        props.onChange({
-            field,
-            value: newState
-        });
+        onChangeField({ field, value: newState });
     };
     
     const updateFormMeta = (items: IUpdateFormMeta) => {
