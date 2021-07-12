@@ -102,6 +102,10 @@ function App() {
 		setOpenFilterList(false);
 	};
 
+	const handleCloseFilterReset = () => {
+		// do something
+	}
+
 	const handleSubmitFilterList = (event: IFilterPanelOnSubmit) => {
 		console.log('handleSubmitFilterList:', event);
 	};
@@ -125,6 +129,7 @@ function App() {
 						open={openFilterList}
 						formMeta={formFilter}
 						onClose={handleCloseFilterList}
+						onReset={handleCloseFilterReset}
 						onSubmit={handleSubmitFilterList}
 						onChange={handleChangeFilterList}
 						width={380}
