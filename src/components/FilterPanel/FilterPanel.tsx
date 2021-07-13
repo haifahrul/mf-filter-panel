@@ -129,6 +129,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
     useEffect(() => {
         let obj = {};
         let initStates = {};
+        let collapseObj: object = {};
 
         if (props.formMeta.length < 1) {
             console.error('Props Form Meta must be at least 1 arrat of object');
@@ -146,6 +147,11 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
                         end: (fm?.value as IDateRange)?.end || null
                     };
                     initState = { start: null, end: null };
+
+                    if (value.start && value.end) {
+                        collapseObj = { ...collapseObj, [fm.field]: !collapseObj[fm.field]};
+                    }
+
                     break;
                 case 'inputMinMax':
                     value = {
@@ -153,6 +159,11 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
                         max: (fm?.value as IInputMinMax)?.max || ''
                     };
                     initState = { min: '', max: '' };
+
+                    if (value.min && value.max) {
+                        collapseObj = { ...collapseObj, [fm.field]: !collapseObj[fm.field]};
+                    }
+
                     break;
                 case 'checkbox':
                     if (!fm?.value) {
@@ -167,12 +178,22 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
 
                     // set default value with null values
                     if (fm?.value && (fm.value as ICheckbox[]).length > 0) {
+                        let counterChecked = 0;
                         initState = (fm.value as ICheckbox[]).map(item => {
+
+                            if (item.checked) {
+                                counterChecked++;
+                            }
+
                             return {
                                 ...item,
                                 checked: false
                             };
                         });
+
+                        if (counterChecked > 0) {
+                            collapseObj = { ...collapseObj, [fm.field]: !collapseObj[fm.field]};
+                        }
                     }
                     break;
                 default:
@@ -186,6 +207,7 @@ const FilterPanel: React.FC<IFilterPanelProps> = (props: IFilterPanelProps) => {
         setState({ ...obj });
         setDefaultState({ ...initStates });
         setFormMeta(props.formMeta);
+        setCollapse({ ...collapseObj });
 
         if (props?.width) {
             setWidthPanel(props.width);

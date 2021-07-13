@@ -62,6 +62,10 @@ function App() {
 					},
 				},
 			},
+			value: {
+				min: 3000,
+				max: 4000,
+			},
 		},
 		{
 			title: 'Checkbox 1 column',
